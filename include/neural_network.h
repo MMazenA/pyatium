@@ -11,6 +11,7 @@ public:
     NeuralNetwork();
     void train(const std::vector<double>& data);
     double predict(double input);
+    std::string getWeights() const;
 private:
     std::vector<double> weights_;
 };

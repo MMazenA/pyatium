@@ -22,3 +22,6 @@ class NeuralNetwork:
         :return: Predicted output.
         """
         return self._nn.predict(input_value)
+
+    def __str__(self):
+        return self._nn.__str__()

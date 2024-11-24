@@ -1,35 +1,25 @@
 #!/bin/bash
 
-# cleanup.sh - A script to delete and rebuild the app during development.
+# build.sh - A script to delete and rebuild the app during development.
 
 set -e 
 
-
 print_info() {
-    echo -e "\033[1;34m[INFO]\033[0m $1"
+    echo -e "[INFO] $1"
 }
 
 print_warning() {
-    echo -e "\033[1;33m[WARNING]\033[0m $1"
+    echo -e "[WARNING] $1"
 }
 
 print_error() {
-    echo -e "\033[1;31m[ERROR]\033[0m $1"
+    echo -e "[ERROR] $1"
 }
 
-
-if ! command -v pybind11-stubgen &> /dev/null
-then
-    print_error "pybind11-stubgen could not be found. Please install it using 'pip install pybind11-stubgen'."
-    exit 1
-fi
-
-
 if [ ! -f "setup.py" ]; then
-    print_error "setup.py not found. Please run this script from the project's root directory."
+    print_error "setup.py not found, cd into ./pyatium"
     exit 1
 fi
-
 
 print_info "Uninstalling pyatium..."
 pip uninstall -y pyatium || print_warning "pyatium is not installed."

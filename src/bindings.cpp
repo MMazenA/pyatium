@@ -10,5 +10,10 @@ PYBIND11_MODULE(_backend, m) {
     py::class_<NeuralNetwork>(m, "NeuralNetwork")
         .def(py::init<>())
         .def("train", &NeuralNetwork::train)
-        .def("predict", &NeuralNetwork::predict);
+        .def("predict", &NeuralNetwork::predict)
+        .def("getWeights", &NeuralNetwork::getWeights)
+        .def("__str__",
+        [](const NeuralNetwork &a) {
+            return "<NeuralNetwork C++ implementation '" + a.getWeights() + "'>";
+        });
 }
