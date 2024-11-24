@@ -1,4 +1,5 @@
 import pyatium
+import numpy as np
 
 
 def test_neural_network():
@@ -8,6 +9,7 @@ def test_neural_network():
     nn.train(data)
     result = nn.predict(5.0)
     print(f"Predicted result: {result}")
+    nn.multiply(np.array([[0, 0, 0, 1], [0, 0, 0, 1], [0, 0, 0, 1], [0, 0, 0, 1]]))
 
 
 if __name__ == "__main__":

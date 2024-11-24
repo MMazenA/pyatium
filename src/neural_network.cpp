@@ -19,9 +19,13 @@ double NeuralNetwork::predict(double input) {
     return output;
 }
 
- std::string NeuralNetwork::getWeights() const {
+std::string NeuralNetwork::getWeights() const {
     std::stringstream result;
     std::copy(weights_.begin(), weights_.end(), std::ostream_iterator<double>(result, ","));
     std::string str = result.str().c_str();
     return str.substr(0,str.length()-1);
+}
+
+void NeuralNetwork::multiply(Eigen::Matrix4f& mat){
+    std::cout << mat << std::endl;
 }
