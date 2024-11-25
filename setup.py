@@ -9,6 +9,23 @@ class get_pybind_include(object):
         return pybind11.get_include()
 
 
+def get_eigen_include():
+    import subprocess
+
+    try:
+        eigen_prefix = (
+            subprocess.check_output(["brew", "--prefix", "eigen"]).strip().decode()
+        )
+        return f"{eigen_prefix}/include/eigen3"
+    except Exception as e:
+        raise RuntimeError(
+            "Could not find Eigen include directory. Make sure Eigen is installed via Homebrew."
+        ) from e
+
+
+eigen_include = get_eigen_include()
+
+
 ext_modules = [
     Extension(
         "pyatium._backend",
@@ -16,6 +33,7 @@ ext_modules = [
         include_dirs=[
             get_pybind_include(),
             "include",
+            eigen_include,
         ],
         language="c++",
         extra_compile_args=["-std=c++11"],
